@@ -4,6 +4,7 @@
 		 Title="DashboardPage"
 		 xmlns:lvc="clr-namespace:LiveChartsCore.SkiaSharpView.Maui;assembly=LiveChartsCore.SkiaSharpView.Maui"
 		 xmlns:vms="clr-namespace:MauiApp1.ViewModels"
+		 xmlns:components="clr-namespace:MauiApp1.Extenders.Components"
 		 Shell.NavBarIsVisible="False"
 		 Shell.BackgroundColor="{StaticResource Background}"
 		 Shell.TitleColor="White"
@@ -11,11 +12,16 @@
 	<VerticalStackLayout BackgroundColor="{StaticResource Background}"
 				   Padding="20"
 				   Spacing="20">
-		<Label Text="Welcome to .NET MAUI!"
-			 FontSize="24"
-			 FontAttributes="Bold"
-			 TextColor="{StaticResource Primary}"
-			 HorizontalOptions="Center" />
+		<Grid HorizontalOptions="Center" ColumnDefinitions="*, *"  ColumnSpacing="18">
+			<components:ValueCard Title="Entradas"
+						    Value="R$ 7.150,00"
+						    IsEntrada="True" />
+			<components:ValueCard Grid.Column="1"
+						    Title="Entradas"
+						    Value="R$ 7.150,00"
+						    IsEntrada="false" />
+		</Grid>
+		
 		<Label Text="Resumo por categoria" TextColor="White" FontSize="18" FontAttributes="Bold" />
 		<Grid ColumnDefinitions="Auto,*"
 			ColumnSpacing="16">
@@ -41,82 +47,21 @@
 			</lvc:PieChart>
 			<!-- Legenda -->
 			<VerticalStackLayout Grid.Column="1" VerticalOptions="Center">
-				<Grid 
-					VerticalOptions="Center"
-					HorizontalOptions="Start">
-					<Grid ColumnDefinitions="Auto, Auto">
-						<HorizontalStackLayout Spacing="8"
-									     VerticalOptions="Center">
-							<Border WidthRequest="14"
-								  HeightRequest="14"
-								  BackgroundColor="{StaticResource Primary}"
-								  StrokeThickness="0">
-								<Border.StrokeShape>
-									<RoundRectangle CornerRadius="4" />
-								</Border.StrokeShape>
-							</Border>
-							<Label Text="Alimentação"
-								 FontSize="14"
-								 TextColor="White"
-								 LineBreakMode="NoWrap" />
-						</HorizontalStackLayout>
-						<Label 	       Grid.Column="1"
-									 Text="30%"
-									 TextColor="White"
-									 FontSize="14"
-									 Margin="22,0,0,0" />
-					</Grid>
-				</Grid>
-				<Grid VerticalOptions="Center"
-					HorizontalOptions="Start">
-					<Grid ColumnDefinitions="Auto, Auto">
-						<HorizontalStackLayout Spacing="8"
-									     VerticalOptions="Center">
-							<Border WidthRequest="14"
-								  HeightRequest="14"
-								  BackgroundColor="{StaticResource Primary}"
-								  StrokeThickness="0">
-								<Border.StrokeShape>
-									<RoundRectangle CornerRadius="4" />
-								</Border.StrokeShape>
-							</Border>
-							<Label Text="Alimentação"
-								 FontSize="14"
-								 TextColor="White"
-								 LineBreakMode="NoWrap" />
-						</HorizontalStackLayout>
-						<Label 	       Grid.Column="1"
-									 Text="30%"
-									 TextColor="White"
-									 FontSize="14"
-									 Margin="22,0,0,0" />
-					</Grid>
-				</Grid>
-				<Grid VerticalOptions="Center"
-					HorizontalOptions="Start">
-					<Grid ColumnDefinitions="Auto, Auto">
-						<HorizontalStackLayout Spacing="8"
-									     VerticalOptions="Center">
-							<Border WidthRequest="14"
-								  HeightRequest="14"
-								  BackgroundColor="{StaticResource Primary}"
-								  StrokeThickness="0">
-								<Border.StrokeShape>
-									<RoundRectangle CornerRadius="4" />
-								</Border.StrokeShape>
-							</Border>
-							<Label Text="Alimentação"
-								 FontSize="14"
-								 TextColor="White"
-								 LineBreakMode="NoWrap" />
-						</HorizontalStackLayout>
-						<Label 	       Grid.Column="1"
-									 Text="30%"
-									 TextColor="White"
-									 FontSize="14"
-									 Margin="22,0,0,0" />
-					</Grid>
-				</Grid>
+				<components:ChartLegendItem Title="Alimentação"
+								    Percent="30%"
+								    Color="{StaticResource Primary}" />
+				<components:ChartLegendItem Title="Transporte"
+								    Percent="20%"
+								    Color="#FF9800" />
+				<components:ChartLegendItem Title="Lazer"
+								    Percent="15%"
+								    Color="{StaticResource CategoryPurple}" />
+				<components:ChartLegendItem Title="Despesas"
+								    Percent="15%"
+								    Color="{StaticResource CategoryBlue}" />
+				<components:ChartLegendItem Title="Lazer"
+								    Percent="15%"
+								    Color="{StaticResource CategoryGreen}" />
 			</VerticalStackLayout>
 		</Grid>
 	</VerticalStackLayout>

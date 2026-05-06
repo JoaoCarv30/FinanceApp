@@ -79,7 +79,10 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <MauiXaml Update="Extenders\Components\CustomCategoryGraph.xaml">
+	  <MauiXaml Update="Extenders\Components\ChartLegendItem.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Extenders\Components\ValueCard.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\DashboardPage.xaml">

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+		 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+		 x:Class="MauiApp1.Extenders.Components.ValueCard"
+		 x:Name="Root">
+	<Border Padding="14"
+		  BackgroundColor="{StaticResource BorderBrush}"
+		  StrokeThickness="0">
+		<Border.StrokeShape>
+			<RoundRectangle CornerRadius="16" />
+		</Border.StrokeShape>
+		<VerticalStackLayout Spacing="4">
+			<Label Text="{Binding Title, Source={x:Reference Root}}"
+				 TextColor="White"
+				 FontSize="16"
+				 FontAttributes="Bold" />
+			<Label Text="{Binding Value, Source={x:Reference Root}}"
+				 FontSize="20"
+				 FontAttributes="Bold">
+				<Label.Triggers>
+					<!-- Entrada -->
+					<DataTrigger TargetType="Label"
+							 Binding="{Binding IsEntrada, Source={x:Reference Root}}"
+							 Value="True">
+						<Setter Property="TextColor"
+							  Value="#22C55E" />
+					</DataTrigger>
+					<!-- Saída -->
+					<DataTrigger TargetType="Label"
+							 Binding="{Binding IsEntrada, Source={x:Reference Root}}"
+							 Value="False">
+						<Setter Property="TextColor"
+							  Value="#EF4444" />
+					</DataTrigger>
+				</Label.Triggers>
+			</Label>
+		</VerticalStackLayout>
+	</Border>
+</ContentView>
