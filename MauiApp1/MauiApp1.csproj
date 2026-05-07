@@ -82,6 +82,9 @@
 	  <MauiXaml Update="Extenders\Components\ChartLegendItem.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Extenders\Components\Transaction.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Extenders\Components\ValueCard.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

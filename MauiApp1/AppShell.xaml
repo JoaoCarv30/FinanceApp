@@ -1,19 +1,38 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<Shell
-    x:Class="MauiApp1.AppShell"
-    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:views="clr-namespace:MauiApp1.Views"
-    Title="MauiApp1">
-
-    <ShellContent
-        Title="Login"
-        ContentTemplate="{DataTemplate views:LoginPage}"
-        Route="LoginPage" />
-
-    <ShellContent
-        Title="Dashboard"
-        ContentTemplate="{DataTemplate views:DashboardPage}"
-        Route="DashboardPage" />
-
+<Shell x:Class="MauiApp1.AppShell"
+	 xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+	 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	 xmlns:views="clr-namespace:MauiApp1.Views"
+	 Shell.NavBarIsVisible="False"
+	 Shell.TabBarBackgroundColor="#101318"
+	 Shell.TabBarForegroundColor="White"
+	 Shell.TabBarTitleColor="White"
+	 Shell.TabBarUnselectedColor="#8A8A8A">
+	<TabBar Route="MainTabs">
+		<Tab Title="Início"
+		     Icon="home_menu_icon.png">
+			<ShellContent Route="DashboardPage"
+					  ContentTemplate="{DataTemplate views:DashboardPage}" />
+		</Tab>
+		<Tab Title="Transações"
+		     Icon="transaction_menu_icon.png">
+			<ShellContent Route="TransactionsPage"
+					  ContentTemplate="{DataTemplate views:DashboardPage}" />
+		</Tab>
+		<Tab Title="Nova"
+		     Icon="new_transaction_menu_icon.png">
+			<ShellContent Route="NewTransactionPage"
+					  ContentTemplate="{DataTemplate views:DashboardPage}" />
+		</Tab>
+		<Tab Title="Categorias"
+		     Icon="category_menu_icon.png">
+			<ShellContent Route="CategoriesPage"
+					  ContentTemplate="{DataTemplate views:DashboardPage}" />
+		</Tab>
+		<Tab Title="Perfil"
+		     Icon="profile_menu_icon.png">
+			<ShellContent Route="ProfilePage"
+					  ContentTemplate="{DataTemplate views:DashboardPage}" />
+		</Tab>
+	</TabBar>
 </Shell>

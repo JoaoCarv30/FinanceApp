@@ -4,8 +4,8 @@
 		 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
 		 x:Name="Root">
 	<Grid VerticalOptions="Center"
-		HorizontalOptions="Start">
-		<Grid ColumnDefinitions="Auto,Auto">
+		HorizontalOptions="Fill">
+		<Grid ColumnDefinitions="Auto,*,Auto">
 			<HorizontalStackLayout Spacing="8"
 						     VerticalOptions="Center">
 				<Border WidthRequest="14"
@@ -21,7 +21,8 @@
 					 TextColor="White"
 					 LineBreakMode="NoWrap" />
 			</HorizontalStackLayout>
-			<Label Grid.Column="1"
+			<Label Grid.Column="2"
+				 HorizontalTextAlignment="End"
 				 Text="{Binding Percent, Source={x:Reference Root}}"
 				 TextColor="White"
 				 FontSize="14"

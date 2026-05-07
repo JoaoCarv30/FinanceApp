@@ -5,64 +5,109 @@
 		 xmlns:lvc="clr-namespace:LiveChartsCore.SkiaSharpView.Maui;assembly=LiveChartsCore.SkiaSharpView.Maui"
 		 xmlns:vms="clr-namespace:MauiApp1.ViewModels"
 		 xmlns:components="clr-namespace:MauiApp1.Extenders.Components"
+		 BackgroundColor="{StaticResource Background}"
 		 Shell.NavBarIsVisible="False"
 		 Shell.BackgroundColor="{StaticResource Background}"
 		 Shell.TitleColor="White"
 		 Shell.ForegroundColor="White">
-	<VerticalStackLayout BackgroundColor="{StaticResource Background}"
-				   Padding="20"
-				   Spacing="20">
-		<Grid HorizontalOptions="Center" ColumnDefinitions="*, *"  ColumnSpacing="18">
-			<components:ValueCard Title="Entradas"
-						    Value="R$ 7.150,00"
-						    IsEntrada="True" />
-			<components:ValueCard Grid.Column="1"
-						    Title="Entradas"
-						    Value="R$ 7.150,00"
-						    IsEntrada="false" />
-		</Grid>
-		
-		<Label Text="Resumo por categoria" TextColor="White" FontSize="18" FontAttributes="Bold" />
-		<Grid ColumnDefinitions="Auto,*"
-			ColumnSpacing="16">
-			<!-- Gráfico -->
-			<lvc:PieChart Grid.Column="0"
-					  SeriesSource="{Binding Data}"
-					  HeightRequest="200"
-					  WidthRequest="200"
-					  Background="Transparent"
-					  HorizontalOptions="Start"
-					  VerticalOptions="Center">
-				<lvc:PieChart.SeriesTemplate>
-					<DataTemplate x:DataType="vms:PieData">
-						<lvc:XamlPieSeries SeriesName="{Binding Name}"
-									 Values="{Binding Values}"
-									 MaxRadialColumnWidth="40">
-							<lvc:XamlPieSeries.Fill>
-								<Binding Path="Paint" />
-							</lvc:XamlPieSeries.Fill>
-						</lvc:XamlPieSeries>
-					</DataTemplate>
-				</lvc:PieChart.SeriesTemplate>
-			</lvc:PieChart>
-			<!-- Legenda -->
-			<VerticalStackLayout Grid.Column="1" VerticalOptions="Center">
-				<components:ChartLegendItem Title="Alimentação"
-								    Percent="30%"
-								    Color="{StaticResource Primary}" />
-				<components:ChartLegendItem Title="Transporte"
-								    Percent="20%"
-								    Color="#FF9800" />
-				<components:ChartLegendItem Title="Lazer"
-								    Percent="15%"
-								    Color="{StaticResource CategoryPurple}" />
-				<components:ChartLegendItem Title="Despesas"
-								    Percent="15%"
-								    Color="{StaticResource CategoryBlue}" />
-				<components:ChartLegendItem Title="Lazer"
-								    Percent="15%"
-								    Color="{StaticResource CategoryGreen}" />
+	<ScrollView>
+		<VerticalStackLayout BackgroundColor="{StaticResource Background}"
+					   Padding="20"
+					   Spacing="30">
+			<Grid ColumnDefinitions="Auto, *, Auto">
+				<Label Text="Início"
+					 TextColor="White"
+					 FontSize="24"
+					 FontFamily="InterBold" />
+				<Image Grid.Column="2"
+					 Source="notification_icon.png"
+					 WidthRequest="32"
+					 HeightRequest="32" />
+			</Grid>
+			<VerticalStackLayout>
+				<Label Text="Saldo total"
+					 TextColor="White"
+					 FontSize="14"
+					 FontFamily="InterRegular" />
+				<Label Grid.Column="2"
+					 Text="R$ 5.320,00"
+					 TextColor="White"
+					 FontSize="18"
+					 FontFamily="InterBold" />
 			</VerticalStackLayout>
-		</Grid>
-	</VerticalStackLayout>
+			<Grid HorizontalOptions="Fill"
+				ColumnDefinitions="*, *"
+				ColumnSpacing="18">
+				<components:ValueCard Title="Entradas"
+							    Value="R$ 7.150,00"
+							    IsEntrada="True" />
+				<components:ValueCard Grid.Column="1"
+							    Title="Entradas"
+							    Value="R$ 7.150,00"
+							    IsEntrada="false" />
+			</Grid>
+			<Label Text="Resumo por categoria"
+				 TextColor="White"
+				 FontSize="18"
+				 FontFamily="InterBold" />
+			<Grid ColumnDefinitions="Auto,*"
+				ColumnSpacing="16">
+				<!-- Gráfico -->
+				<lvc:PieChart Grid.Column="0"
+						  SeriesSource="{Binding Data}"
+						  HeightRequest="200"
+						  WidthRequest="200"
+						  Background="Transparent"
+						  HorizontalOptions="Start"
+						  VerticalOptions="Center">
+					<lvc:PieChart.SeriesTemplate>
+						<DataTemplate x:DataType="vms:PieData">
+							<lvc:XamlPieSeries SeriesName="{Binding Name}"
+										 Values="{Binding Values}"
+										 MaxRadialColumnWidth="40">
+								<lvc:XamlPieSeries.Fill>
+									<Binding Path="Paint" />
+								</lvc:XamlPieSeries.Fill>
+							</lvc:XamlPieSeries>
+						</DataTemplate>
+					</lvc:PieChart.SeriesTemplate>
+				</lvc:PieChart>
+				<!-- Legenda -->
+				<VerticalStackLayout Grid.Column="1"
+							   VerticalOptions="Center">
+					<components:ChartLegendItem Title="Alimentação"
+									    Percent="30%"
+									    Color="{StaticResource Primary}" />
+					<components:ChartLegendItem Title="Transporte"
+									    Percent="20%"
+									    Color="#FF9800" />
+					<components:ChartLegendItem Title="Lazer"
+									    Percent="15%"
+									    Color="{StaticResource CategoryPurple}" />
+					<components:ChartLegendItem Title="Despesas"
+									    Percent="15%"
+									    Color="{StaticResource CategoryBlue}" />
+					<components:ChartLegendItem Title="Lazer"
+									    Percent="15%"
+									    Color="{StaticResource CategoryGreen}" />
+				</VerticalStackLayout>
+			</Grid>
+			<Grid ColumnDefinitions="Auto, *, Auto">
+				<Label Text="Transações recentes"
+					 TextColor="White"
+					 FontSize="18"
+					 FontFamily="InterBold" />
+				<Label Grid.Column="2"
+					 Text="Ver todas"
+					 TextColor="{StaticResource Primary}"
+					 FontSize="12"
+					 FontFamily="InterBold" />
+			</Grid>
+			<components:Transaction />
+			<components:Transaction />
+			<components:Transaction />
+			<components:Transaction />
+		
+		</VerticalStackLayout>
+	</ScrollView>
 </ContentPage>
