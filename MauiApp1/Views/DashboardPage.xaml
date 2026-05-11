@@ -103,11 +103,18 @@
 					 FontSize="12"
 					 FontFamily="InterBold" />
 			</Grid>
-			<components:Transaction />
-			<components:Transaction />
-			<components:Transaction />
-			<components:Transaction />
-		
+			<CollectionView ItemsSource="{Binding Transactions}">
+				<CollectionView.ItemsLayout>
+					<LinearItemsLayout Orientation="Vertical"
+					                   ItemSpacing="16" />
+				</CollectionView.ItemsLayout>
+
+				<CollectionView.ItemTemplate>
+					<DataTemplate>
+						<components:Transaction TransactionData="{Binding .}" />
+					</DataTemplate>
+				</CollectionView.ItemTemplate>
+			</CollectionView>
 		</VerticalStackLayout>
 	</ScrollView>
 </ContentPage>

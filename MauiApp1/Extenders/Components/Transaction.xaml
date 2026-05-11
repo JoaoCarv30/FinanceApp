@@ -1,36 +1,75 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="MauiApp1.Extenders.Components.Transaction">
-	<Grid ColumnDefinitions="Auto, *, Auto">
-		<Grid>
-			<HorizontalStackLayout>
-				<Image Source="category_health_icon.png" WidthRequest="32" HeightRequest="32" />
-				<VerticalStackLayout Spacing="4"
-							   Margin="12,0,0,0">
-					<Label Text="Saúde"
-						 TextColor="White"
-						 FontSize="16"
-						 FontFamily="InterBold" />
-					<Label Text="Farmácia"
-						 TextColor="White"
-						 FontSize="14"
-						 FontFamily="InterRegular" />
-				</VerticalStackLayout>
-			</HorizontalStackLayout>
-		</Grid>
-		<Grid Grid.Column="2">
-			<VerticalStackLayout>
-				<Label Text="+ R$ 5.400,00"
-					 TextColor="{StaticResource Primary}"
-					 FontSize="16"
-					 FontFamily="InterBold" />
-				<Label Text="Hoje"
-					 HorizontalOptions="End"
-					 TextColor="White"
-					 FontSize="14"
-					 FontFamily="InterRegular" />
-			</VerticalStackLayout>
-		</Grid>
-	</Grid>
+             xmlns:enums="clr-namespace:MauiApp1.Models.Enums"
+             x:Class="MauiApp1.Extenders.Components.Transaction"
+             x:Name="Root">
+
+    <Grid ColumnDefinitions="Auto, *, Auto">
+
+        <Grid>
+            <HorizontalStackLayout>
+                
+                <Image Source="{Binding TransactionData.Category, Source={x:Reference Root}, Converter={StaticResource CategoryIconConverter}}"
+                       WidthRequest="32"
+                       HeightRequest="32" />
+
+                <VerticalStackLayout Spacing="4"
+                                     Margin="12,0,0,0">
+
+                    <Label Text="{Binding TransactionData.Title, Source={x:Reference Root}}"
+                           TextColor="White"
+                           FontSize="14"
+                           FontFamily="InterRegular" />
+
+                    <Label Text="{Binding TransactionData.Category, Source={x:Reference Root}}"
+                           TextColor="White"
+                           FontSize="16"
+                           FontFamily="InterBold" />
+
+                </VerticalStackLayout>
+            </HorizontalStackLayout>
+        </Grid>
+
+        <Grid Grid.Column="2">
+            <VerticalStackLayout>
+                <Label TextColor="{StaticResource Primary}"
+                       FontSize="16"
+                       FontFamily="InterBold">
+
+                    <Label.Text>
+                        <MultiBinding Converter="{StaticResource TransactionValueConverter}">
+                            <Binding Path="TransactionData.Value"
+                                     Source="{x:Reference Root}" />
+
+                            <Binding Path="TransactionData.Type"
+                                     Source="{x:Reference Root}" />
+                        </MultiBinding>
+                    </Label.Text>
+
+                    <Label.Triggers>
+                        <DataTrigger TargetType="Label"
+                                     Binding="{Binding TransactionData.Type, Source={x:Reference Root}}"
+                                     Value="{x:Static enums:TypeTransactionEnum.Income}">
+                            <Setter Property="TextColor" Value="{StaticResource Primary}" />
+                        </DataTrigger>
+
+                        <DataTrigger TargetType="Label"
+                                     Binding="{Binding TransactionData.Type, Source={x:Reference Root}}"
+                                     Value="{x:Static enums:TypeTransactionEnum.Expense}">
+                            <Setter Property="TextColor" Value="Red" />
+                        </DataTrigger>
+                    </Label.Triggers>
+
+                </Label>
+
+                <Label Text="{Binding TransactionData.Date, Source={x:Reference Root}, Converter={StaticResource TransactionDateConverter}}"
+                       HorizontalOptions="End"
+                       TextColor="White"
+                       FontSize="14"
+                       FontFamily="InterRegular" />
+            </VerticalStackLayout>
+        </Grid>
+
+    </Grid>
 </ContentView>

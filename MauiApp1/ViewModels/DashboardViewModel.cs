@@ -1,4 +1,7 @@
-﻿using LiveChartsCore.SkiaSharpView.Painting;
+﻿using System.Collections.ObjectModel;
+using LiveChartsCore.SkiaSharpView.Painting;
+using MauiApp1.Models.Dtos;
+using MauiApp1.Models.Enums;
 using Microsoft.Maui.Graphics;
 using SkiaSharp;
 
@@ -17,6 +20,43 @@ public class DashboardViewModel : BaseViewModel
             new("Charlie", 50, GetPaint("Danger"))
         ];
     }
+    
+    
+    public ObservableCollection<TransactionDto> Transactions { get; } = new()
+    {
+        new TransactionDto
+        {
+            Title = "Lanche Do Val",
+            Value = 54.90,
+            Category = CategoryTransactionEnum.Food,
+            Date = DateTime.Today,
+            Type = TypeTransactionEnum.Expense
+        },
+        new TransactionDto
+        {
+            Title = "Salário",
+            Value = 5400.00,
+            Category = CategoryTransactionEnum.User,
+            Date = DateTime.Today,
+            Type = TypeTransactionEnum.Income
+        },
+        new TransactionDto
+        {
+            Title = "Uber",
+            Value = 32.50,
+            Category = CategoryTransactionEnum.Transport,
+            Date = DateTime.Today.AddDays(-1),
+            Type = TypeTransactionEnum.Expense
+        },
+        new TransactionDto
+        {
+            Title = "Curso",
+            Value = 120.00,
+            Category = CategoryTransactionEnum.Education,
+            Date = DateTime.Today.AddDays(-2),
+            Type = TypeTransactionEnum.Expense
+        }
+    };
 
     public PieData[] Data { get; set; }
 
