@@ -22,7 +22,7 @@
 		<Tab Title="Nova"
 		     Icon="new_transaction_menu_icon.png">
 			<ShellContent Route="NewTransactionPage"
-					  ContentTemplate="{DataTemplate views:DashboardPage}" />
+					  ContentTemplate="{DataTemplate views:NewTransactionPage}" />
 		</Tab>
 		<Tab Title="Categorias"
 		     Icon="category_menu_icon.png">

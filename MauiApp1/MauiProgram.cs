@@ -63,6 +63,7 @@ public static class MauiProgram
     {
         Routing.RegisterRoute("LoginPage", typeof(LoginPage));
         Routing.RegisterRoute("DashboardPage", typeof(DashboardPage));
+        Routing.RegisterRoute("NewTransactionPage", typeof(NewTransactionPage));
 
         return builder;
     }
@@ -71,6 +72,7 @@ public static class MauiProgram
     {
         builder.Services.AddTransient<LoginViewModel>();
         builder.Services.AddTransient<DashboardViewModel>();
+        builder.Services.AddTransient<NewTransactionViewModel>();
         return builder;
     }
 }
